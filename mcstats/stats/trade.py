@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'trade',
         {
-            'title': 'Trader',
-            'desc': 'Villager trades',
+            'title': 'Commerçant',
+            'desc': 'Echanges avec les villageois',
             'unit': 'int',
         },
         mcstats.StatReader(['minecraft:custom','minecraft:traded_with_villager'])

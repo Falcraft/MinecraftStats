@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'open_container',
         {
-            'title': 'Warehouse',
-            'desc': 'Containers opened',
+            'title': 'Magasinier',
+            'desc': 'Conteneurs ouverts',
             'unit': 'int',
         },
         mcstats.StatSumReader([

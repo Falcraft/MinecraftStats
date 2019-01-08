@@ -5,7 +5,7 @@ mcstats.registry.append(
         'use_bow',
         {
             'title': 'Archer',
-            'desc': 'Arrows shot',
+            'desc': 'Flêches tirées',
             'unit': 'int',
         },
         mcstats.StatReader(['minecraft:used','minecraft:bow'])

@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'use_ender_pearl',
         {
-            'title': 'Translocator',
-            'desc': 'Ender pearls thrown',
+            'title': 'Téléporteur',
+            'desc': 'Ender pearls lancées',
             'unit': 'int',
         },
         mcstats.StatReader(['minecraft:used','minecraft:ender_pearl'])

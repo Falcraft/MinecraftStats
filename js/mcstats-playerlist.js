@@ -18,14 +18,14 @@ mcstats.showPlayerList = function() {
     mcstats.viewContent.html(`
         <div class="text-center mt-3">
             <input id="show-inactive" type="checkbox"/>
-            <label for="show-inactive">Show inactive players</label>
+            <label for="show-inactive">Afficher les joueurs inactifs</label>
         </div>
         <div class="mcstats-entry p-1">
         <div class="round-box p-1">
             <table class="table table-responsive-xs table-hover table-sm">
             <thead>
-                <th scope="col" class="text-shadow">Player</th>
-                <th scope="col" class="text-right text-shadow">Last online</th>
+                <th scope="col" class="text-shadow">Joueur</th>
+                <th scope="col" class="text-right text-shadow">Dernière connexion</th>
             </thead>
             <tbody>${tbody}</tbody>
             </table>
@@ -43,11 +43,11 @@ mcstats.showPlayerList = function() {
 
     // show
     mcstats.showView(
-        'Player List',
+        'Liste des joueurs',
         false,
         `
-            Players who have not been online for over ${mcstats.info.inactiveDays} days
-            are considered inactive and are not eligible for any awards.
+            Les joueurs qui ne se sont pas connectés depuis ${mcstats.info.inactiveDays} jours
+            sont consiérés comme inactifs et ne sont pas éligibles pour les prix
         `,
         false);
 }

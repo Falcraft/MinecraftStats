@@ -1,11 +1,13 @@
 from mcstats import mcstats
 
+"""
+# What ? Lanterns are a 1.14 feature
 mcstats.registry.append(
     mcstats.MinecraftStat(
         'place_lantern',
         {
-            'title': 'Fear Of The Dark',
-            'desc': 'Lanterns placed',
+            'title': 'Peur du noir',
+            'desc': 'Lanternes placées',
             'unit': 'int',
         },
         mcstats.StatDiffReader(
@@ -13,3 +15,4 @@ mcstats.registry.append(
             mcstats.StatReader(['minecraft:mined','minecraft:lantern']),
         )
     ))
+"""

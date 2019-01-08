@@ -1,5 +1,5 @@
 // Load a JSON file from an URL
-loadJson = function(url, successFunc, compressed = false) {
+loadJson = function(url, successFunc, compressed = false, failedFunc) {
     if(compressed) {
         // load zlib-compressed JSON as byte sequence, then decompress
         var req = new XMLHttpRequest();
@@ -9,14 +9,14 @@ loadJson = function(url, successFunc, compressed = false) {
             // decompress JSON
             var compressedData = new Uint8Array(req.response);
             data = JSON.parse(pako.inflate(compressedData, {to: 'string'}));
-
             // call success handler
             successFunc(data);
         };
         req.send();
     } else {
+        if(!failedFunc) failedFunc = function(){};
         // simple AJAX request
-        $.ajax({url: url, success: successFunc});
+        $.getJSON(url, successFunc).fail(failedFunc);
     }
 };
 

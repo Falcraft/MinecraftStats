@@ -1,5 +1,5 @@
 // Number formatter
-intlFormat = new Intl.NumberFormat('en');
+intlFormat = new Intl.NumberFormat('fr');
 
 formatFloat = function(value) {
     return (value != parseInt(value)) ? value.toFixed(1) : value;
@@ -9,9 +9,9 @@ formatTime = function(unixTime) {
     var date = new Date();
     date.setTime(unixTime * 1000);
 
-    return date.toLocaleDateString('en-US', {day: 'numeric', month: 'short', year: 'numeric'}) +
+    return date.toLocaleDateString('fr-FR', {day: 'numeric', month: 'short', year: 'numeric'}) +
         ' - ' +
-        date.toLocaleTimeString('en-US', {hour: '2-digit', minute: '2-digit', hour12: false});
+        date.toLocaleTimeString('fr-FR', {hour: '2-digit', minute: '2-digit', hour12: false});
 };
 
 // Format an award value
@@ -35,7 +35,7 @@ mcstats.formatValue = function(value, unit) {
             var higher = false;
 
             if(seconds > 86400) {
-                value += Math.floor(seconds / 86400) + 'd ';
+                value += Math.floor(seconds / 86400) + 'j ';
                 seconds %= 86400;
                 higher = true;
             }
@@ -68,8 +68,8 @@ mcstats.formatValue = function(value, unit) {
 
 // Award types
 mcstats.awardType = {
-    medal: {title: 'Medal', imgPrefix: 'fatcow/medal_award_'},
-    crown: {title: 'Crown', imgPrefix: 'fatcow/crown_'},
+    medal: {title: 'Médaille', imgPrefix: 'fatcow/medal_award_'},
+    crown: {title: 'Couronne', imgPrefix: 'fatcow/crown_'},
 };
 
 // Create a rank widget
@@ -82,13 +82,13 @@ mcstats.rankWidget = function(rank, type = 'medal') {
             case 1:
                 // gold
                 medal = 'gold';
-                medalTitle = 'Gold';
+                medalTitle = 'Or';
                 break;
 
             case 2:
                 // silver
                 medal = 'silver';
-                medalTitle = 'Silver';
+                medalTitle = 'Argent';
                 break;
 
             case 3:
@@ -103,7 +103,7 @@ mcstats.rankWidget = function(rank, type = 'medal') {
 
         if(medal) {
             widget = `
-                <img class="img-textsize-1_5 mr-1 align-top" title="${medalTitle} ${awardType.title}" src="img/${awardType.imgPrefix}${medal}.png"/>
+                <img class="img-textsize-1_5 mr-1 align-top" title="${awardType.title} en ${medalTitle}" src="img/${awardType.imgPrefix}${medal}.png"/>
             ` + widget;
         }
     } else {
@@ -178,6 +178,6 @@ mcstats.playerWidget = function(uuid, skinCss = 'textw-1_5 texth-1_5 align-basel
         return mcstats.faceWidget(skin, skinCss) +
             (asLink ? `<a href="#player:${uuid}">${p.name}</a>` : p.name);
     } else {
-        return `<span class="text-muted">(nobody)</span>`;
+        return `<span class="text-muted">(Personne)</span>`;
     }
 };

@@ -1,5 +1,7 @@
 from mcstats import mcstats
 
+"""
+# Is a 1.14 feature
 mcstats.registry.append(
     mcstats.MinecraftStat(
         'use_crossbow',
@@ -10,3 +12,5 @@ mcstats.registry.append(
         },
         mcstats.StatReader(['minecraft:used','minecraft:crossbow'])
     ))
+
+"""

@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'enchant',
         {
-            'title': 'Enchanter',
-            'desc': 'Items enchanted',
+            'title': 'Merlin l\'enchanteur',
+            'desc': 'Items enchantés',
             'unit': 'int',
         },
         mcstats.StatReader(['minecraft:custom','minecraft:enchant_item'])

@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'craft_turtle_helmet',
         {
-            'title': 'Turtlehead',
-            'desc': 'Turtle Helmets crafted',
+            'title': 'Tête de tortue',
+            'desc': 'Carapaces de tortue craftés',
             'unit': 'int',
         },
         mcstats.StatSumReader([

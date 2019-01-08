@@ -24,11 +24,11 @@ mcstats.showHof = function() {
         <div class="round-box p-1">
             <table class="table table-responsive-xs table-hover table-sm">
             <thead>
-                <th scope="col" class="text-right text-shadow">Rank</th>
-                <th scope="col" class="text-shadow">Player</th>
-                <th scope="col" class="text-center"><img class="img-textsize-2" title="Gold Medals" src="img/fatcow/medal_award_gold.png"/></th>
-                <th scope="col" class="text-center"><img class="img-textsize-2" title="Silver Medals" src="img/fatcow/medal_award_silver.png"/></th>
-                <th scope="col" class="text-center"><img class="img-textsize-2" title="Bronze Medals" src="img/fatcow/medal_award_bronze.png"/></th>
+                <th scope="col" class="text-right text-shadow">Classement</th>
+                <th scope="col" class="text-shadow">Joueur</th>
+                <th scope="col" class="text-center"><img class="img-textsize-2" title="Médailles d'or" src="img/fatcow/medal_award_gold.png"/></th>
+                <th scope="col" class="text-center"><img class="img-textsize-2" title="Médailles d'argent" src="img/fatcow/medal_award_silver.png"/></th>
+                <th scope="col" class="text-center"><img class="img-textsize-2" title="Médailles de bronze" src="img/fatcow/medal_award_bronze.png"/></th>
                 <th scope="col" class="text-right text-shadow">Score</th>
             </thead>
             <tbody>${tbody}</tbody>
@@ -39,12 +39,11 @@ mcstats.showHof = function() {
 
     // show
     mcstats.showView(
-        'Hall of Fame',
-        'Crown Score Ranking',
+        'Panthéon',
+        'Classement par score',
         `
-            The crown score is calculated by the amount of medals a player
-            holds.<br/>A gold medal is worth four points, a silver medal is worth
-            two points and a bronze medal is worth one point.
+Le score est calculé en utilisant les médailles détenues par le joueur.<br/>
+Une médaillte d'or vaut 4 points, une médaille d'argent 2 points et une médaille de bronze 1 point.
         `,
         false);
 }

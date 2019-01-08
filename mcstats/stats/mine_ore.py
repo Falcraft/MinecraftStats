@@ -6,17 +6,17 @@ def create_ore_stat(title, oreId, oreName):
             'mine_' + oreId + '_ore',
             {
                 'title': title,
-                'desc': oreName + ' ore mined',
+                'desc': 'Minerais ' + oreName + ' minés',
                 'unit': 'int',
             },
             mcstats.StatReader(['minecraft:mined','minecraft:' + oreId + '_ore'])
         ))
 
-create_ore_stat('Black Gold', 'coal', 'Coal')
-create_ore_stat('Iron Heart', 'iron', 'Iron')
-create_ore_stat('Gold Rush', 'gold', 'Gold')
-create_ore_stat('Diamonds!', 'diamond', 'Diamond')
-create_ore_stat('Mountain Miner', 'emerald', 'Emerald')
-create_ore_stat('Blue', 'lapis', 'Lapis Lazuli')
-create_ore_stat('Redstone Miner', 'redstone', 'Redstone')
-create_ore_stat('Quartz', 'nether_quartz', 'Nether Quartz')
+create_ore_stat('L\'or noir', 'coal', 'de charbons')
+create_ore_stat('Coeur de fer', 'iron', 'de fer')
+create_ore_stat('Ruée vers l\'or', 'gold', 'd\'or')
+create_ore_stat('Capitaliste', 'diamond', 'diamands')
+create_ore_stat('Mineur des montagnes', 'emerald', 'd\'émeraudes')
+create_ore_stat('Bleu comme ciel', 'lapis', 'de lapis lazuli')
+create_ore_stat('Il m\'en faut!', 'redstone', 'de redstone')
+create_ore_stat('Espèce de riche!', 'nether_quartz', 'de quartz')

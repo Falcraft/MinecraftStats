@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'drink_milk',
         {
-            'title': 'Milksop',
-            'desc': 'Milk buckets drunk',
+            'title': 'Milkshake',
+            'desc': 'Seaux de laits bus',
             'unit': 'int',
         },
         mcstats.StatReader(['minecraft:used','minecraft:milk_bucket'])

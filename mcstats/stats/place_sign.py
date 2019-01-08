@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'place_sign',
         {
-            'title': 'README.TXT',
-            'desc': 'Signs placed',
+            'title': 'Readme.txt',
+            'desc': 'Pancartes placées',
             'unit': 'int',
         },
         # subtract mined from used

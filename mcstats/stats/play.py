@@ -5,7 +5,7 @@ mcstats.registry.append(
         'play',
         {
             'title': 'Addict',
-            'desc': 'Total time played',
+            'desc': 'Temps passé sur le serveur',
             'unit': 'ticks',
         },
         mcstats.StatReader(['minecraft:custom','minecraft:play_one_minute'])

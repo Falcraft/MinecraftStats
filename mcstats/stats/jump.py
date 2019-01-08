@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'jump',
         {
-            'title': 'Bunnyhopper',
-            'desc': 'Times jumped',
+            'title': 'Sauts de lapin',
+            'desc': 'Sauts',
             'unit': 'int',
         },
         mcstats.StatReader(['minecraft:custom','minecraft:fall_one_cm'])

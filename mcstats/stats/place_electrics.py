@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'place_electrics',
         {
-            'title': 'Electrician',
-            'desc': 'Redstone items placed',
+            'title': 'Fil rouge avec fil rouge',
+            'desc': 'Items de redstone placés',
             'unit': 'int',
         },
         # subtract mined from placed

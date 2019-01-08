@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'place_sapling',
         {
-            'title': 'Forester',
-            'desc': 'Trees planted',
+            'title': 'Ecologiste',
+            'desc': 'Pousses d\'arbres et fleurs plantées',
             'unit': 'int',
         },
         # subtract mined from placed

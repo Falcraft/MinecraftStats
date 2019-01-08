@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'eat_fish',
         {
-            'title': 'Fish Gourmet',
-            'desc': 'Fish eaten',
+            'title': 'Il est pas frais mon poisson ?',
+            'desc': 'Poissons mangés',
             'unit': 'int',
         },
         mcstats.StatSumReader([

@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'craft_tools',
         {
-            'title': 'Workshop',
-            'desc': 'Tools crafted',
+            'title': 'Atelier',
+            'desc': 'Outils craftés',
             'unit': 'int',
         },
         mcstats.StatSumMatchReader(

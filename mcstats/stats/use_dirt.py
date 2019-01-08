@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'use_dirt',
         {
-            'title': 'Dirtbag',
-            'desc': 'Dirt blocks placed',
+            'title': 'Bouse',
+            'desc': 'Terres placées',
             'unit': 'int',
         },
         mcstats.StatReader(['minecraft:used','minecraft:dirt'])

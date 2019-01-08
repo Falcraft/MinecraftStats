@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'pot_flower',
         {
-            'title': 'Florist',
-            'desc': 'Flowers potted',
+            'title': 'Fleuriste',
+            'desc': 'Fleurs mises en pot',
             'unit': 'int',
         },
         mcstats.StatReader(['minecraft:custom','minecraft:pot_flower'])

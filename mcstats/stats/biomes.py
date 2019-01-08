@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'biomes',
         {
-            'title': 'Explorer',
-            'desc': 'Biomes discovered',
+            'title': 'Explorateur',
+            'desc': 'Biomes découverts',
             'unit': 'int',
         },
         mcstats.StatListLengthReader([

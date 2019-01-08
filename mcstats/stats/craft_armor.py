@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'craft_armor',
         {
-            'title': 'Armorer',
-            'desc': 'Pieces of armor crafted',
+            'title': 'Armurier',
+            'desc': 'Armures craftées',
             'unit': 'int',
         },
         mcstats.StatSumMatchReader(

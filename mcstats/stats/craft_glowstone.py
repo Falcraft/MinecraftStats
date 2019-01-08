@@ -4,9 +4,13 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'craft_glowstone',
         {
-            'title': 'Illuminator',
-            'desc': 'Glowstone crafted',
+            'title': 'Eclairage naturel',
+            'desc': 'Glowstone craftés',
             'unit': 'int',
         },
-        mcstats.StatReader(['minecraft:crafted','minecraft:glowstone']),
+        mcstats.StatSumReader([
+            mcstats.StatReader(['minecraft:crafted','minecraft:glowstone']),
+            mcstats.StatReader(['minecraft:mined','minecraft:glowstone']),
+        ])
+        
     ))

@@ -29,8 +29,8 @@ mcstats.showPlayer = function(uuid) {
             <div class="round-box p-1">
                 <table class="table table-responsive-xs table-hover table-sm">
                 <thead>
-                    <th scope="col" class="text-right text-shadow">Rank</th>
-                    <th scope="col" class="text-shadow">Award</th>
+                    <th scope="col" class="text-right text-shadow">Classement</th>
+                    <th scope="col" class="text-shadow">Prix</th>
                     <th scope="col" class="text-shadow">Score</th>
                 </thead>
                 <tbody>${tbody}</tbody>
@@ -42,8 +42,17 @@ mcstats.showPlayer = function(uuid) {
         // show
         mcstats.showView(
             mcstats.playerWidget(uuid, 'textw texth align-baseline mr-2', false),
-            'Player Statistics',
-            'Last played: ' + mcstats.lastOnlineWidget(player.last),
+            'Statistiques du joueur',
+            'Dernière connexion: ' + mcstats.lastOnlineWidget(player.last),
+            false);
+    }, false, function(){
+        var player = mcstats.players[uuid];
+        mcstats.viewContent.html(``);
+
+        mcstats.showView(
+            mcstats.playerWidget(uuid, 'textw texth align-baseline mr-2', false),
+            'Joueur non trouvé<br/> Ce Joueur ne s\'est probablement pas connecté depuis la mise à jour',
+            'Dernière connexion: ' + mcstats.lastOnlineWidget(player.last),
             false);
     });
 };

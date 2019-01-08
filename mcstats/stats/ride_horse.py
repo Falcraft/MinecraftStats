@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'ride_horse',
         {
-            'title': 'Rider',
-            'desc': 'Distance ridden on a horse',
+            'title': 'Cavalier',
+            'desc': 'Distance parcourue à cheval',
             'unit': 'cm',
         },
         mcstats.StatReader(['minecraft:custom','minecraft:horse_one_cm'])

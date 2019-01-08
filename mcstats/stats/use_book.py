@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'use_book',
         {
-            'title': 'Bestseller',
-            'desc': 'Books written',
+            'title': 'Ecrivain',
+            'desc': 'Livres écrits',
             'unit': 'int',
         },
         mcstats.StatReader(['minecraft:used','minecraft:writable_book'])

@@ -6,7 +6,7 @@ def create_score_stat(mobId, title, mobText):
             'score_' + mobId,
             {
                 'title': title,
-                'desc': 'Score vs ' + mobText,
+                'desc': 'Rapport kill/death contre les ' + mobText,
                 'unit': 'int',
             },
             mcstats.StatDiffReader(
@@ -20,7 +20,7 @@ def create_kill_stat(mobId, title, mobText):
             'kill_' + mobId,
             {
                 'title': title,
-                'desc': mobText + ' killed',
+                'desc': mobText + ' tués',
                 'unit': 'int',
             },
             mcstats.StatReader(['minecraft:killed','minecraft:' + mobId])
@@ -34,50 +34,53 @@ def create_kill_stat(mobId, title, mobText):
 # - Snow Golems
 # - Vexes
 
+# -- SCORES
 # Hostiles
-create_score_stat('blaze','Extinguisher','Blazes')
-create_score_stat('creeper','Creeper Creep','Creepers')
-create_score_stat('endermite','End Ratter','Endermite')
-create_score_stat('ghast','Tear Drinker','Ghasts')
-create_score_stat('magma_cube','Magma Cream','Magma Cubes')
-create_score_stat('phantom','Phantom Shooter','Phantoms')
-create_score_stat('shulker','Shulker Cracker','Shulkers')
-create_score_stat('silverfish','Nasty Little...','Silverfish')
-create_score_stat('slime','Swamp Lurker','Slimes')
-create_score_stat('witch','Witch Hunter','Witches')
-create_score_stat('wither_skeleton','Wither Or Not','Wither Skeletons')
+create_score_stat('blaze','Pompier du nether','Blazes')
+create_score_stat('creeper','Démineur','Creepers')
+create_score_stat('endermite','Mites de l\'end','Endermites')
+create_score_stat('ghast','Ne pleure pas','Ghasts')
+create_score_stat('magma_cube','La crême de la crême', 'Cubes de magma')
+create_score_stat('phantom','SOS Fantômes','Phantoms')
+create_score_stat('shulker','Lévitisme','Shulkers')
+create_score_stat('silverfish','Oh sale petit ...','Silverfishs')
+create_score_stat('slime','Rôdeur des marais','Slimes')
+create_score_stat('witch','Chasseur de sorcière','Sorcières')
+create_score_stat('wither_skeleton','Je veux mon beacon !','Wither Squelettes')
 
 # Neutrals
-create_score_stat('dolphin','Dolphin Hunter','Dolphins')
-create_score_stat('llama','Caravan Bandit','Llamas')
-create_score_stat('enderman','Enderman Ender','Endermen')
+create_score_stat('dolphin','Braconier','Dauphins')
+create_score_stat('enderman','Et paf l\'enderman !','Endermen')
 create_score_stat('panda','Kung FU! Panda','Pandas')
-create_score_stat('polar_bear','Polar Hunter','Polar Bears')
-create_score_stat('zombie_pigman','Nether Gang War','Zombie Pigmen')
+create_score_stat('polar_bear','Chasseur polaire','Ours polaires')
+create_score_stat('zombie_pigman','Gang du nether','Zombie Pigmen')
 
+# -- KILLS
 # Passives
-create_kill_stat('bat','Bat Flap','Bats')
-create_kill_stat('chicken','Chicken Griller','Chickens')
-create_kill_stat('cow','Cow Tipper','Cows')
-create_kill_stat('horse','Horse Hater','Horses')
-create_kill_stat('mooshroom','Mycelium Cowboy','Mooshrooms')
-create_kill_stat('ocelot','Kitty Killer','Ocelots and Cats')
-create_kill_stat('parrot','Stupid Bird!','Parrots')
-create_kill_stat('pig','Pork Chopper','Pigs')
-create_kill_stat('rabbit','Bunny Killer :(','Rabbits')
-create_kill_stat('sheep','Big Bad Wolf','Sheep')
-create_kill_stat('squid','Pool Cleaner','Squids')
-create_kill_stat('turtle','Super Mario','Turtles')
-create_kill_stat('villager','Bully','Villagers')
-create_kill_stat('wolf','Bad Dog!','Wolves and Dogs')
+create_kill_stat('llama','Pilleur de caravanes','Lamas')
+create_kill_stat('bat','Anti-batman','Chauves-souris')
+create_kill_stat('chicken','KFC','Poulets')
+create_kill_stat('cow','La vache !','Vaches')
+create_kill_stat('horse','Finnndus','Chevaux')
+create_kill_stat('mooshroom','Vache toxique','Mooshrooms')
+# Nope :p => Trop mignons pour être tués :(
+#create_kill_stat('ocelot','Kitty Killer','Ocelots et Chats')
+#create_kill_stat('parrot','Stupid Bird!','Perroquet')
+create_kill_stat('turtle','Super Mario','Tortues')
+create_kill_stat('pig','Adorateur de bacon','Cochons')
+create_kill_stat('rabbit','Tueur de lapins :(','Lapins')
+create_kill_stat('sheep','Grand méchant loup','Moutons')
+create_kill_stat('squid','Nettoyeur de piscine','Calamars')
+create_kill_stat('villager','Brute !','Villageois')
+create_kill_stat('wolf','Méchant toutou!','Loups et Chiens')
 
 # Zombies (including Husks and Zombie Villagers)
 mcstats.registry.append(
     mcstats.MinecraftStat(
         'score_zombie',
         {
-            'title': 'Zombie Grinder',
-            'desc': 'Score vs Zombies/Husks/Drowned',
+            'title': 'Je suis une légende',
+            'desc': 'Rapport kill/death contre les Zombies/Husks/Drowned',
             'unit': 'int',
         },
         mcstats.StatDiffReader(
@@ -100,8 +103,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'score_skeleton',
         {
-            'title': 'Bone Collector',
-            'desc': 'Score vs Skeletons/Strays',
+            'title': 'Collecteur d\'os',
+            'desc': 'Rapport kill/death contre les Skeletons/Strays',
             'unit': 'int',
         },
         mcstats.StatDiffReader(
@@ -120,8 +123,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'score_spider',
         {
-            'title': 'Arachnophobia',
-            'desc': 'Score vs Spiders',
+            'title': 'Aracnophobe',
+            'desc': 'Rapport kill/death contre les Araignées',
             'unit': 'int',
         },
         mcstats.StatDiffReader(
@@ -140,8 +143,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'score_guardian',
         {
-            'title': 'Underwater Raider',
-            'desc': 'Score vs Guardians',
+            'title': 'Pilleur de temple',
+            'desc': 'Rapport kill/death contre les Guardians',
             'unit': 'int',
         },
         mcstats.StatDiffReader(
@@ -160,8 +163,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'score_illagers',
         {
-            'title': 'Cleanser',
-            'desc': 'Score vs Illagers',
+            'title': 'Inspecteur de manoirs',
+            'desc': 'Rapport kill/death contre les Illagers',
             'unit': 'int',
         },
         mcstats.StatDiffReader(
@@ -186,8 +189,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'kill_fish',
         {
-            'title': 'Fish Catcher',
-            'desc': 'Fish killed',
+            'title': 'Attrape-Poisson',
+            'desc': 'Poissons tués',
             'unit': 'int',
         },
         mcstats.StatSumReader([

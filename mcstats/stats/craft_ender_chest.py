@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'craft_ender_chest',
         {
-            'title': 'Grief This!',
-            'desc': 'Ender chests crafted',
+            'title': 'Coffre perso',
+            'desc': 'Ender chests craftés',
             'unit': 'int',
         },
         mcstats.StatReader(['minecraft:crafted','minecraft:ender_chest']),

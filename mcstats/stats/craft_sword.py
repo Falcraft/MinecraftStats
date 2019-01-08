@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'craft_sword',
         {
-            'title': 'Blacksmith',
-            'desc': 'Swords crafted',
+            'title': 'Forgeron',
+            'desc': 'Epées craftées',
             'unit': 'int',
         },
         mcstats.StatSumMatchReader(

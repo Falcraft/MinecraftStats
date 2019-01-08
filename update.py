@@ -46,7 +46,7 @@ skin_update_interval = 3600 * args.skin_update_interval
 # paths
 mcUsercacheFilename = args.server + '/usercache.json'
 
-mcWorldDir = args.server + '/' + args.world;
+mcWorldDir = args.server + '/' + args.world
 mcStatsDir = mcWorldDir + '/stats'
 mcAdvancementsDir = mcWorldDir + '/advancements'
 
@@ -116,6 +116,29 @@ for mcUser in mcUsercache:
 
 # update player data
 hof = mcstats.CrownScoreRanking()
+
+# Merges the stats comming from 'moreStatistics' with the vanilla ones
+def merge_player_stats(uuid, stats):
+    tmp_file = args.server + "/tmp/" + uuid + ".json"
+    if not os.path.isfile(tmp_file):
+        print("no additionals statistics were found for " + tmp_file)
+        return
+    try:
+        with open(tmp_file) as more_file:
+            m_data = json.load(more_file)
+    except:
+        print("Failed to parse json file " + tmp_file)
+    if not "DataVersion" in m_data:
+        print("MoreStatistics version not supported")
+        return
+
+    m_stats = m_data['stats']
+    for key in m_stats:
+        if not stats[key]:
+            stats[key] = {}
+        for stat_key in m_stats[key]:
+                stats[key][stat_key] = m_stats[key][stat_key]
+
 
 for uuid, player in players.items():
     # cache name
@@ -192,6 +215,7 @@ for uuid, player in players.items():
     except:
         stats['advancements'] = dict()
 
+    merge_player_stats(uuid, stats)
     # process stats
     for mcstat in mcstats.registry:
         value = mcstat.read(stats)

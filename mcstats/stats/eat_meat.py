@@ -5,7 +5,7 @@ mcstats.registry.append(
         'eat_meat',
         {
             'title': 'Carnivore',
-            'desc': 'Meat items eaten',
+            'desc': 'Viandes mangées',
             'unit': 'int',
         },
         mcstats.StatSumReader([

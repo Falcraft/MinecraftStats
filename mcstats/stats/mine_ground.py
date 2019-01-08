@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'mine_ground',
         {
-            'title': 'Excavator',
-            'desc': 'Dirt, sand and gravel mined',
+            'title': 'Excavateur',
+            'desc': 'Terre, sable et gravier minés',
             'unit': 'int',
         },
         mcstats.StatSumReader([

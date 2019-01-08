@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'use_shears',
         {
-            'title': 'Cutter',
-            'desc': 'Shear uses',
+            'title': 'Coiffeur',
+            'desc': 'Cisailles utilisées',
             'unit': 'int',
         },
         mcstats.StatReader(['minecraft:used','minecraft:shears'])

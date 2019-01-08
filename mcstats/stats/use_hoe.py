@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'use_hoe',
         {
-            'title': 'Farmer',
-            'desc': 'Ground blocks plowed',
+            'title': 'Un laboureur et ses enfants',
+            'desc': 'Terres labourés',
             'unit': 'int',
         },
         mcstats.StatSumMatchReader(

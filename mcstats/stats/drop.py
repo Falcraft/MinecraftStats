@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'drop',
         {
-            'title': 'Dropper',
-            'desc': 'Items dropped',
+            'title': 'Maladroit !',
+            'desc': 'Items droppés',
             'unit': 'int',
         },
         mcstats.StatReader(['minecraft:custom','minecraft:drop'])

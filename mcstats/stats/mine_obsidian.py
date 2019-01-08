@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'mine_obsidian',
         {
-            'title': 'Obsidian Miner',
-            'desc': 'Obsidian blocks mined',
+            'title': 'Mineur d\'obsidienne',
+            'desc': 'Blocs d\'obsidienne minés',
             'unit': 'int',
         },
         mcstats.StatReader(['minecraft:mined','minecraft:obsidian'])

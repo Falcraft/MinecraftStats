@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'crouch',
         {
-            'title': 'Sneaky',
-            'desc': 'Distance crouched',
+            'title': 'Sournois',
+            'desc': 'Distance accroupis',
             'unit': 'cm',
         },
         mcstats.StatReader(['minecraft:custom','minecraft:crouch_one_cm'])

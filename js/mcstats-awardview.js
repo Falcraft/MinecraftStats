@@ -35,7 +35,7 @@ mcstats.showAward = function(id) {
         // show
         mcstats.showView(
             award.title,
-            'Award Ranking',
+            'Classement pour le prix',
             false,
             'img/award-icons/' + id + '.png');
     });

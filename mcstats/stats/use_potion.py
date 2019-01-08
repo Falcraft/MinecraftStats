@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'use_potion',
         {
-            'title': 'Alchemist',
-            'desc': 'Potions used',
+            'title': 'Alcoolique',
+            'desc': 'Potions utilisées',
             'unit': 'int',
         },
         mcstats.StatSumReader([

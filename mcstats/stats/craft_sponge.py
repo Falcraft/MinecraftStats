@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'craft_sponge',
         {
-            'title': 'Spongebob',
-            'desc': 'Sponges dried',
+            'title': 'Bob l\'éponge',
+            'desc': 'Eponges séchées',
             'unit': 'int',
         },
         mcstats.StatReader(['minecraft:crafted','minecraft:sponge'])

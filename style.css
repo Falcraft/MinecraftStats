@@ -33,8 +33,11 @@ a:hover { color: #ACF; }
     border-color: #333;
 }
 
-.navbar-dark .navbar-nav .nav-link { color: #ACF; }
-.navbar-dark .navbar-nav .nav-link:focus { color: #ACF; }
+.navbar-dark .navbar-nav .nav-link { 
+    color: #ACF;
+    text-decoration: none;
+ }
+/* .navbar-dark .navbar-nav .nav-link:focus { color: #ACF; } */
 .navbar-dark .navbar-nav .nav-link:hover {
     color: #ACF;
     text-decoration: underline;
@@ -59,7 +62,10 @@ a:hover { color: #ACF; }
     image-rendering: optimizeSpeed;
 }
 
-.img-textsize { height: 1em; }
+.img-textsize { 
+    height: 1em;
+    margin-bottom: 0.5em;
+}
 .img-textsize-1_5 { height: 1.5em; }
 .img-textsize-2 { height: 2em; }
 .img-textsize-3 { height: 3em; }

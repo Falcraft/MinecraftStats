@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'use_egg',
         {
-            'title': 'Catch!',
-            'desc': 'Eggs thrown',
+            'title': 'Attrape !',
+            'desc': 'Oeufs lancés',
             'unit': 'int',
         },
         mcstats.StatReader(['minecraft:used','minecraft:egg'])

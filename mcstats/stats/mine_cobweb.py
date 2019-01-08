@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'mine_cobweb',
         {
-            'title': 'God...Damnit!',
-            'desc': 'Cobweb removed',
+            'title': 'A mort la toile',
+            'desc': 'Toiles d\'araignée enlevées',
             'unit': 'int',
         },
         mcstats.StatReader(['minecraft:mined','minecraft:cobweb'])

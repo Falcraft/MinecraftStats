@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'place_rails',
         {
-            'title': 'Railway Company',
-            'desc': 'Rails placed',
+            'title': 'Compagnie du rail',
+            'desc': 'Rails placés',
             'unit': 'int',
         },
         mcstats.StatSumMatchReader(

@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'place_piston',
         {
-            'title': 'Mechanic',
-            'desc': 'Pistons placed',
+            'title': 'Pistonné',
+            'desc': 'Pistons placés',
             'unit': 'int',
         },
         mcstats.StatDiffReader(

@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'mine_stone',
         {
-            'title': 'Stonemason',
-            'desc': 'Stone mined',
+            'title': 'Tailleur de pierre',
+            'desc': 'Pierres/diorites/andesites/granites minés',
             'unit': 'int',
         },
         mcstats.StatSumReader([

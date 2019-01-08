@@ -48,5 +48,5 @@ mcstats.showAwardsList = function() {
     }
 
     // show
-    mcstats.showView('Award Overview', false, false, false);
+    mcstats.showView('Prix', false, false, false);
 };

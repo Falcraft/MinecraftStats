@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'mine_kelp',
         {
-            'title': 'I Need Kelp!',
-            'desc': 'Kelp mined',
+            'title': 'Algoculture',
+            'desc': 'Algues coupées',
             'unit': 'int',
         },
         mcstats.StatSumReader([

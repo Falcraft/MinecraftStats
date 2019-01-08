@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'place_cactus',
         {
-            'title': 'Cactus Farmer',
-            'desc': 'Cacti planted',
+            'title': 'QuiPique',
+            'desc': 'Cactus placés',
             'unit': 'int',
         },
         mcstats.StatReader(['minecraft:used','minecraft:cactus'])

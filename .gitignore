@@ -5,3 +5,5 @@
 /skins
 __pycache__
 *.log
+downloads
+.vscode

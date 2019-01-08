@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'use_fireworks',
         {
-            'title': 'Happy New Year!',
-            'desc': 'Fireworks started',
+            'title': 'Bonne année !',
+            'desc': 'Feux d\'artifices lancés',
             'unit': 'int',
         },
         mcstats.StatReader(['minecraft:used','minecraft:firework_rocket'])

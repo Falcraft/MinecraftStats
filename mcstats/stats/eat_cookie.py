@@ -5,7 +5,7 @@ mcstats.registry.append(
         'eat_cookie',
         {
             'title': 'Cookie Monster',
-            'desc': 'Cookies eaten',
+            'desc': 'Cookies mangés',
             'unit': 'int',
         },
         mcstats.StatReader(['minecraft:used','minecraft:cookie'])

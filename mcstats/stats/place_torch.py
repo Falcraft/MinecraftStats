@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'place_torch',
         {
-            'title': 'Enlightened',
-            'desc': 'Torches placed',
+            'title': 'Illuminés',
+            'desc': 'Torches placées',
             'unit': 'int',
         },
         # subtract mined from placed

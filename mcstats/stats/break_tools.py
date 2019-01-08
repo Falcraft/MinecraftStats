@@ -4,8 +4,8 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'break_tools',
         {
-            'title': 'Wastrel',
-            'desc': 'Tools broken',
+            'title': 'Gaspilleur',
+            'desc': 'Outils cassés',
             'unit': 'int',
         },
         mcstats.StatSumMatchReader(
