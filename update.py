@@ -115,7 +115,7 @@ for mcUser in mcUsercache:
         players[uuid] = {'name': mcUser['name']}
 
 # update player data
-hof = mcstats.CrownScoreRanking()
+hof = mcstats.Ranking()
 
 # Merges the stats comming from 'moreStatistics' with the vanilla ones
 def merge_player_stats(uuid, stats):
@@ -147,8 +147,7 @@ for uuid, player in players.items():
     # check if data file is available
     dataFilename = mcStatsDir + '/' + uuid + '.json'
     if not os.path.isfile(dataFilename):
-        print('no player data available for ' + name +
-            '(' + uuid + ')')
+        # got no data for this dude
         continue
 
     # get last play time and determine activity
@@ -180,7 +179,7 @@ for uuid, player in players.items():
             data = json.load(dataFile)
     except:
         print('failed to update player data for ' + name +
-            '(' + uuid + ')')
+            ' (' + uuid + ')')
         continue
 
     # check data version
@@ -189,9 +188,9 @@ for uuid, player in players.items():
     else:
         version = 0
 
-    if version < 1452:
+    if version < 1451: # 17w47a is the absolute minimum
         print('unsupported data version ' + str(version) + ' for ' + name +
-            '(' + uuid + ')')
+            ' (' + uuid + ')')
         continue
 
     # collapse stats
@@ -218,11 +217,12 @@ for uuid, player in players.items():
     merge_player_stats(uuid, stats)
     # process stats
     for mcstat in mcstats.registry:
-        value = mcstat.read(stats)
-        playerStats[mcstat.name] = {'value':value}
+        if version >= mcstat.minVersion and version <= mcstat.maxVersion:
+            value = mcstat.read(stats)
+            playerStats[mcstat.name] = {'value':value}
 
-        if not inactive:
-            mcstat.enter(uuid, value)
+            if not inactive:
+                mcstat.enter(uuid, value)
 
     # init crown score
     if not inactive:
@@ -234,6 +234,10 @@ for uuid, player in players.items():
 awards = dict()
 
 for mcstat in mcstats.registry:
+    if not isinstance(mcstat, mcstats.Ranking):
+        # this may be a legacy stat that doesn't have its own ranking
+        continue
+
     if mcstat.name in awards:
         print('WARNING: stat name "' + mcstat.name + '" already in use')
         continue
@@ -243,8 +247,8 @@ for mcstat in mcstats.registry:
 
     # process crown score points
     for i in range(0, len(mcstat.ranking)):
-        (id, ranking) = mcstat.ranking[i]
-        player = players[id]
+        entry = mcstat.ranking[i]
+        player = players[entry.id]
         player['stats'][mcstat.name]['rank'] = i+1
 
         if i < 3:
@@ -252,8 +256,8 @@ for mcstat in mcstats.registry:
 
     # write ranking
     outRanking = []
-    for (id, value) in mcstat.ranking:
-        outRanking.append({'uuid':id,'value':value})
+    for entry in mcstat.ranking:
+        outRanking.append({'uuid':entry.id,'value':entry.value})
 
     with open(dbRankingsPath + '/' + mcstat.name + '.json', 'w') as rankingFile:
         json.dump(outRanking, rankingFile)
@@ -261,8 +265,8 @@ for mcstat in mcstats.registry:
     # set first rank in award info
     award = mcstat.meta
     if(len(mcstat.ranking) > 0):
-        (id, value) = mcstat.ranking[0]
-        award['best'] = {'uuid':id,'value':value}
+        best = mcstat.ranking[0]
+        award['best'] = {'uuid':best.id,'value':best.value}
 
     # add to award info list
     awards[mcstat.name] = award
@@ -270,11 +274,11 @@ for mcstat in mcstats.registry:
 # compute and write hall of fame
 hof.sort()
 outHallOfFame = []
-for (id, crown) in hof.ranking:
-    if crown.score[0] == 0:
+for entry in hof.ranking:
+    if entry.value.score[0] == 0:
         break
 
-    outHallOfFame.append({'uuid':id,'value':crown.score})
+    outHallOfFame.append({'uuid':entry.id,'value':entry.value.score})
 
 # write player data and construct player cache
 playerCache = dict()

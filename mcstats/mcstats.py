@@ -69,6 +69,33 @@ class StatListLengthReader:
     def read(self, stats):
         return len(read(stats, self.path, []))
 
+# Ranking entries
+class RankingEntry:
+    def __init__(self, id, value):
+        self.id = id
+        self.value = value
+
+    def __eq__(self, other):
+        return self.id == other.id and self.value == other.value
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+    def __lt__(self, other):
+        if self.value != other.value:
+            return self.value < other.value
+        else: # use player ID as fallback to keep things deterministic
+            return self.id < other.id
+
+    def __gt__(self, other):
+        return not self.__eq__(other) and not self.__lt__(other)
+
+    def __le__(self, other):
+        return self.__eq__(other) or self.__lt__(other)
+
+    def __ge__(self, other):
+        return self.__eq__(other) or self.__gt__(other)
+
 # Rankings
 class Ranking:
     def __init__(self):
@@ -76,13 +103,11 @@ class Ranking:
 
     # enter the player with id and value into the ranking
     def enter(self, id, value):
-        self.ranking.append((id, value))
+        self.ranking.append(RankingEntry(id, value))
 
-    # sort ranking and return
+    # sort ranking
     def sort(self):
-        # by default, sort values directly and in descending order
-        self.ranking = sorted(
-            self.ranking, key = lambda x : x[1], reverse = True)
+        self.ranking.sort(reverse=True)
 
 # Base for all minecraft stats
 class MinecraftStat(Ranking):
@@ -91,6 +116,8 @@ class MinecraftStat(Ranking):
         self.name = name
         self.meta = meta
         self.reader = reader
+        self.minVersion = 1451 # 17w47a is the absolute minimum
+        self.maxVersion = float("inf")
 
     # enter the player with id and value into the ranking
     def enter(self, id, value):
@@ -102,19 +129,56 @@ class MinecraftStat(Ranking):
     def read(self, stats):
         return self.reader.read(stats)
 
+# Legacy statistics for supporting older data versions
+class LegacyStat:
+    def __init__(self, link, minVersion, maxVersion, reader):
+        self.link = link
+        self.name = link.name
+        self.minVersion = minVersion
+        self.maxVersion = maxVersion
+        self.reader = reader
+
+    # enter the player with id and value into the linked ranking
+    def enter(self, id, value):
+        self.link.enter(id, value)
+
+    # read the statistic value from the player stats
+    def read(self, stats):
+        return self.reader.read(stats)
+
 # Crown score (a meta statistic)
 class CrownScore:
     def __init__(self):
         self.score = [0,0,0,0]
 
+    def __eq__(self, other):
+        return self.score == other.score
+
+    def __ne__(self, other):
+        return not self.__eq__(other)
+
+    def __lt__(self, other):
+        if self.score[0] != other.score[0]: # crown score
+            return self.score[0] < other.score[0]
+        elif self.score[1] != other.score[1]: # gold medals
+            return self.score[1] < other.score[1]
+        elif self.score[2] != other.score[2]: # silver medals
+            return self.score[2] < other.score[2]
+        else: # bronze medals
+            return self.score[3] < other.score[3]
+
+    def __gt__(self, other):
+        return not self.__eq__(other) and not self.__lt__(other)
+
+    def __le__(self, other):
+        return self.__eq__(other) or self.__lt__(other)
+
+    def __ge__(self, other):
+        return self.__eq__(other) or self.__gt__(other)
+
     def increase(self, i):
         self.score[i+1] += 1
         self.score[0] = 4*self.score[1] + 2*self.score[2] + self.score[3]
-
-class CrownScoreRanking(Ranking):
-    def sort(self):
-        self.ranking = sorted(
-            self.ranking, key = lambda x : x[1].score[0], reverse = True)
 
 # the global registry
 registry = []

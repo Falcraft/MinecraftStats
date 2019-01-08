@@ -5,10 +5,14 @@ mcstats.registry.append(
         'craft_wool',
         {
             'title': 'Tricoteur',
-            'desc': 'Laine craftées ou teintées',
+            'desc': 'Laine/tapis craftées ou teintées',
             'unit': 'int',
         },
         mcstats.StatSumMatchReader(
             ['minecraft:crafted'],
-            ['minecraft:.+_wool'])
+            [
+                'minecraft:.+_wool',
+                'minecraft:.+_carpet'
+                
+            ])
     ))

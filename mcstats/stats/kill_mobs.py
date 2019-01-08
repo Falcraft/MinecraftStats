@@ -1,18 +1,15 @@
 from mcstats import mcstats
 
-def create_score_stat(mobId, title, mobText):
-    mcstats.registry.append(
-        mcstats.MinecraftStat(
-            'score_' + mobId,
-            {
-                'title': title,
-                'desc': 'Rapport kill/death contre les ' + mobText,
-                'unit': 'int',
-            },
-            mcstats.StatDiffReader(
-                mcstats.StatReader(['minecraft:killed','minecraft:' + mobId]),
-                mcstats.StatReader(['minecraft:killed_by','minecraft:' + mobId]))
-        ))
+mcstats.registry.append(
+    mcstats.MinecraftStat(
+        'kill_any',
+        {
+            'title': 'Tuerie!',
+            'desc': 'Nombre de mobs tués',
+            'unit': 'int',
+        },
+        mcstats.StatReader(['minecraft:custom','minecraft:mob_kills'])
+    ))
 
 def create_kill_stat(mobId, title, mobText):
     mcstats.registry.append(
@@ -36,24 +33,28 @@ def create_kill_stat(mobId, title, mobText):
 
 # -- SCORES
 # Hostiles
-create_score_stat('blaze','Pompier du nether','Blazes')
-create_score_stat('creeper','Démineur','Creepers')
-create_score_stat('endermite','Mites de l\'end','Endermites')
-create_score_stat('ghast','Ne pleure pas','Ghasts')
-create_score_stat('magma_cube','La crême de la crême', 'Cubes de magma')
-create_score_stat('phantom','SOS Fantômes','Phantoms')
-create_score_stat('shulker','Lévitisme','Shulkers')
-create_score_stat('silverfish','Oh sale petit ...','Silverfishs')
-create_score_stat('slime','Rôdeur des marais','Slimes')
-create_score_stat('witch','Chasseur de sorcière','Sorcières')
-create_score_stat('wither_skeleton','Je veux mon beacon !','Wither Squelettes')
+create_kill_stat('blaze','Pompier du nether','Blazes')
+create_kill_stat('creeper','Démineur','Creepers')
+create_kill_stat('endermite','Mites de l\'end','Endermite')
+create_kill_stat('ghast','Ne pleure pas','Ghasts')
+create_kill_stat('magma_cube','La crême de la crême','Magma Cubes')
+create_kill_stat('phantom','SOS Fantômes','Phantoms')
+create_kill_stat('shulker','Lévitismer','Shulkers')
+create_kill_stat('silverfish','Oh sale petit...','Silverfish')
+create_kill_stat('slime','Rôdeur des marais','Slimes')
+create_kill_stat('vex','Casseur de vex','Vexes')
+create_kill_stat('witch','Chasseur de sorcières','Witches')
+create_kill_stat('wither_skeleton','Je veux ma balise','Wither Skeletons')
 
 # Neutrals
-create_score_stat('dolphin','Braconier','Dauphins')
-create_score_stat('enderman','Et paf l\'enderman !','Endermen')
-create_score_stat('panda','Kung FU! Panda','Pandas')
-create_score_stat('polar_bear','Chasseur polaire','Ours polaires')
-create_score_stat('zombie_pigman','Gang du nether','Zombie Pigmen')
+create_kill_stat('dolphin','Braconier','Dolphins')
+create_kill_stat('llama','Pilleur de caravanes','Llamas')
+create_kill_stat('enderman','Et paf l\'enderman !','Endermen')
+create_kill_stat('iron_golem','Défense inexistante!','Iron Golems')
+create_kill_stat('panda','Kung FU! Panda','Pandas')
+create_kill_stat('polar_bear','Chasseur polaire','Polar Bears')
+create_kill_stat('snow_golem','Anti-froid','Snow Golems')
+create_kill_stat('zombie_pigman','Gang du nether','Zombie Pigmen')
 
 # -- KILLS
 # Passives
@@ -77,111 +78,81 @@ create_kill_stat('wolf','Méchant toutou!','Loups et Chiens')
 # Zombies (including Husks and Zombie Villagers)
 mcstats.registry.append(
     mcstats.MinecraftStat(
-        'score_zombie',
+        'kill_zombie',
         {
             'title': 'Je suis une légende',
-            'desc': 'Rapport kill/death contre les Zombies/Husks/Drowned',
+            'desc': 'Nombre de zombies tués',
             'unit': 'int',
         },
-        mcstats.StatDiffReader(
-            mcstats.StatSumReader([
-                mcstats.StatReader(['minecraft:killed','minecraft:husk']),
-                mcstats.StatReader(['minecraft:killed','minecraft:drowned']),
-                mcstats.StatReader(['minecraft:killed','minecraft:zombie']),
-                mcstats.StatReader(['minecraft:killed','minecraft:zombie_villager']),
-            ]),
-            mcstats.StatSumReader([
-                mcstats.StatReader(['minecraft:killed_by','minecraft:husk']),
-                mcstats.StatReader(['minecraft:killed_by','minecraft:drowned']),
-                mcstats.StatReader(['minecraft:killed_by','minecraft:zombie']),
-                mcstats.StatReader(['minecraft:killed_by','minecraft:zombie_villager']),
-            ]))
+        mcstats.StatSumReader([
+            mcstats.StatReader(['minecraft:killed','minecraft:husk']),
+            mcstats.StatReader(['minecraft:killed','minecraft:drowned']),
+            mcstats.StatReader(['minecraft:killed','minecraft:zombie']),
+            mcstats.StatReader(['minecraft:killed','minecraft:zombie_villager']),
+        ])
     ))
 
 # Skeletons (including Strays)
 mcstats.registry.append(
     mcstats.MinecraftStat(
-        'score_skeleton',
+        'kill_skeleton',
         {
             'title': 'Collecteur d\'os',
-            'desc': 'Rapport kill/death contre les Skeletons/Strays',
+            'desc': 'Nombre de Skeletons/Strays tués',
             'unit': 'int',
         },
-        mcstats.StatDiffReader(
-            mcstats.StatSumReader([
-                mcstats.StatReader(['minecraft:killed','minecraft:skeleton']),
-                mcstats.StatReader(['minecraft:killed','minecraft:stray']),
-            ]),
-            mcstats.StatSumReader([
-                mcstats.StatReader(['minecraft:killed_by','minecraft:skeleton']),
-                mcstats.StatReader(['minecraft:killed_by','minecraft:stray']),
-            ]))
+        mcstats.StatSumReader([
+            mcstats.StatReader(['minecraft:killed','minecraft:skeleton']),
+            mcstats.StatReader(['minecraft:killed','minecraft:stray']),
+        ])
     ))
 
 # Spiders (including Cave Spiders)
 mcstats.registry.append(
     mcstats.MinecraftStat(
-        'score_spider',
+        'kill_spider',
         {
             'title': 'Aracnophobe',
-            'desc': 'Rapport kill/death contre les Araignées',
+            'desc': 'Nombre d\'Araignées tuées',
             'unit': 'int',
         },
-        mcstats.StatDiffReader(
-            mcstats.StatSumReader([
-                mcstats.StatReader(['minecraft:killed','minecraft:spider']),
-                mcstats.StatReader(['minecraft:killed','minecraft:cave_spider']),
-            ]),
-            mcstats.StatSumReader([
-                mcstats.StatReader(['minecraft:killed_by','minecraft:spider']),
-                mcstats.StatReader(['minecraft:killed_by','minecraft:cave_spider']),
-            ]))
+        mcstats.StatSumReader([
+            mcstats.StatReader(['minecraft:killed','minecraft:spider']),
+            mcstats.StatReader(['minecraft:killed','minecraft:cave_spider']),
+        ])
     ))
 
 # Guardians (including Elder Guardians)
 mcstats.registry.append(
     mcstats.MinecraftStat(
-        'score_guardian',
+        'kill_guardian',
         {
             'title': 'Pilleur de temple',
-            'desc': 'Rapport kill/death contre les Guardians',
+            'desc': 'Nombre de Guardians tués',
             'unit': 'int',
         },
-        mcstats.StatDiffReader(
-            mcstats.StatSumReader([
-                mcstats.StatReader(['minecraft:killed','minecraft:guardian']),
-                mcstats.StatReader(['minecraft:killed','minecraft:elder_guardian']),
-            ]),
-            mcstats.StatSumReader([
-                mcstats.StatReader(['minecraft:killed_by','minecraft:guardian']),
-                mcstats.StatReader(['minecraft:killed_by','minecraft:elder_guardian']),
-            ]))
+        mcstats.StatSumReader([
+            mcstats.StatReader(['minecraft:killed','minecraft:guardian']),
+            mcstats.StatReader(['minecraft:killed','minecraft:elder_guardian']),
+        ])
     ))
 
 # Illagers (all types)
 mcstats.registry.append(
     mcstats.MinecraftStat(
-        'score_illagers',
+        'kill_illagers',
         {
             'title': 'Inspecteur de manoirs',
-            'desc': 'Rapport kill/death contre les Illagers',
+            'desc': 'Nombre d\'Illagers tués',
             'unit': 'int',
         },
-        mcstats.StatDiffReader(
-            mcstats.StatSumReader([
-                mcstats.StatReader(['minecraft:killed','minecraft:evoker']),
-                mcstats.StatReader(['minecraft:killed','minecraft:vindicator']),
-                mcstats.StatReader(['minecraft:killed','minecraft:pillager']),
-                mcstats.StatReader(['minecraft:killed','minecraft:illusioner']),
-                mcstats.StatReader(['minecraft:killed','minecraft:illager_beast']),
-            ]),
-            mcstats.StatSumReader([
-                mcstats.StatReader(['minecraft:killed_by','minecraft:evoker']),
-                mcstats.StatReader(['minecraft:killed_by','minecraft:vindicator']),
-                mcstats.StatReader(['minecraft:killed_by','minecraft:pillager']),
-                mcstats.StatReader(['minecraft:killed_by','minecraft:illusioner']),
-                mcstats.StatReader(['minecraft:killed_by','minecraft:illager_beast']),
-            ]))
+        mcstats.StatSumReader([
+            mcstats.StatReader(['minecraft:killed','minecraft:evoker']),
+            mcstats.StatReader(['minecraft:killed','minecraft:vindicator']),
+            mcstats.StatReader(['minecraft:killed','minecraft:pillager']),
+            mcstats.StatReader(['minecraft:killed','minecraft:illusioner']),
+            mcstats.StatReader(['minecraft:killed','minecraft:illager_beast']),
+        ])
     ))
 
 # Fish mobs
