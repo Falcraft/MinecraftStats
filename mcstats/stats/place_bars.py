@@ -5,7 +5,7 @@ mcstats.registry.append(
         'place_bars',
         {
             'title': 'Geôlier',
-            'desc': 'Barreaux de fer placées',
+            'desc': 'Barreaux de fer placés',
             'unit': 'int',
         },
         mcstats.StatReader(['minecraft:used','minecraft:iron_bars'])

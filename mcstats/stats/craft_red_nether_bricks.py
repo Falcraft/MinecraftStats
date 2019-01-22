@@ -5,8 +5,8 @@ mcstats.registry.append(
         'craft_red_nether_bricks',
         {
             'title': 'Rougeur',
-            'desc': 'Blocs de briques du nether rouge craftés',
+            'desc': 'Blocs de briques rouges du Nether craftés',
             'unit': 'int',
         },
-        mcstats.StatReader(['minecraft:crafted','minecraft:nether_bricks']),
+        mcstats.StatReader(['minecraft:crafted','minecraft:red_nether_bricks']),
     ))

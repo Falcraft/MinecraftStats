@@ -8,6 +8,8 @@ mcstats.registry.append(
             'desc': 'Bûches coupées',
             'unit': 'int',
         },
-        mcstats.StatSumMatchReader(
-            ['minecraft:mined'],['minecraft:.+_log'])
+        mcstats.StatSumReader([
+            mcstats.StatSumMatchReader(['minecraft:mined'],['minecraft:.+_log']),
+            mcstats.StatSumMatchReader(['minecraft:mined'],['minecraft:.+_wood'])
+        ])
     ))

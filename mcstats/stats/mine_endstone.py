@@ -4,9 +4,9 @@ mcstats.registry.append(
     mcstats.MinecraftStat(
         'mine_endstone',
         {
-            'title': 'Terraformer',
-            'desc': 'Netherrack/End stone mined',
+            'title': 'Terraformeur de l\'end',
+            'desc': 'End stone minés',
             'unit': 'int',
         },
-        mcstats.StatReader(['minecraft:mined','minecraft:netherrack'])
+        mcstats.StatReader(['minecraft:mined','minecraft:end_stone'])
     ))
