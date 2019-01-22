@@ -5,7 +5,7 @@ mcstats.registry.append(
         'harvest_sugar',
         {
             'title': 'Sugardaddy',
-            'desc': 'Sugar harvested',
+            'desc': 'Plants de canne à sucre récoltés',
             'unit': 'int',
         },
         mcstats.StatDiffReader(

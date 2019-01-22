@@ -22,8 +22,8 @@ mcstats.showAward = function(id) {
             <div class="round-box p-1">
                 <table class="table table-responsive-xs table-hover table-sm">
                 <thead>
-                    <th scope="col" class="text-right text-shadow">Rank</th>
-                    <th scope="col" class="text-shadow">Player</th>
+                    <th scope="col" class="text-right text-shadow">Rang</th>
+                    <th scope="col" class="text-shadow">Joueur</th>
                     <th scope="col" class="text-right text-shadow">${award.desc}</th>
                 </thead>
                 <tbody>${tbody}</tbody>

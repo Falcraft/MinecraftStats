@@ -5,7 +5,7 @@ mcstats.registry.append(
         'harvest_nether_wart',
         {
             'title': 'Nether Farmer',
-            'desc': 'Nether warts harvested',
+            'desc': 'Verrues du nehter récoltées',
             'unit': 'int',
         },
         mcstats.StatDiffReader(

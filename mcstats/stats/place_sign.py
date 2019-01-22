@@ -1,7 +1,6 @@
 from mcstats import mcstats
 
-mcstats.registry.append(
-    mcstats.MinecraftStat(
+mainStat =  mcstats.MinecraftStat(
         'place_sign',
         {
             'title': 'Readme.txt',
@@ -15,7 +14,7 @@ mcstats.registry.append(
             mcstats.StatSumMatchReader(
                 ['minecraft:mined'],['minecraft:.+_sign'])
         )
-    ))
+)
 
 mainStat.minVersion = 1901 # signs were updated in 18w43a
 mcstats.registry.append(mainStat)

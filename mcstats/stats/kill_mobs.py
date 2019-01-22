@@ -42,19 +42,18 @@ create_kill_stat('phantom','SOS Fantômes','Phantoms')
 create_kill_stat('shulker','Lévitismer','Shulkers')
 create_kill_stat('silverfish','Oh sale petit...','Silverfish')
 create_kill_stat('slime','Rôdeur des marais','Slimes')
-create_kill_stat('vex','Casseur de vex','Vexes')
-create_kill_stat('witch','Chasseur de sorcières','Witches')
-create_kill_stat('wither_skeleton','Je veux ma balise','Wither Skeletons')
+create_kill_stat('vex','Casseur de vex','Vexs')
+create_kill_stat('witch','Chasseur de sorcières','Sorcières')
+create_kill_stat('wither_skeleton','Je veux ma balise','Wither squelettes')
 
 # Neutrals
-create_kill_stat('dolphin','Braconier','Dolphins')
-create_kill_stat('llama','Pilleur de caravanes','Llamas')
+create_kill_stat('dolphin','Braconier','Dauphins')
 create_kill_stat('enderman','Et paf l\'enderman !','Endermen')
-create_kill_stat('iron_golem','Défense inexistante!','Iron Golems')
+create_kill_stat('iron_golem','Défense inexistante!','Golems de fer')
 create_kill_stat('panda','Kung FU! Panda','Pandas')
-create_kill_stat('polar_bear','Chasseur polaire','Polar Bears')
-create_kill_stat('snow_golem','Anti-froid','Snow Golems')
-create_kill_stat('zombie_pigman','Gang du nether','Zombie Pigmen')
+create_kill_stat('polar_bear','Chasseur polaire','Ours polaires')
+create_kill_stat('snow_golem','Anti-froid','Golem de neige')
+create_kill_stat('zombie_pigman','Gang du nether','Cochons zombie')
 
 # -- KILLS
 # Passives
