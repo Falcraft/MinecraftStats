@@ -1,0 +1,1 @@
+# TODO : read permission file to check if a given user is a visitor

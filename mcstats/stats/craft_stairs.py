@@ -5,7 +5,7 @@ mcstats.registry.append(
         'craft_stairs',
         {
             'title': 'Colimaçon',
-            'desc': 'Escaliers craftées',
+            'desc': 'Escaliers craftés',
             'unit': 'int',
         },
         mcstats.StatSumMatchReader(
