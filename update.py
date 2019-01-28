@@ -6,6 +6,7 @@ import os
 import re
 import shutil
 import time
+from permission import Permissions
 
 # get a fixed sense of "now"
 now = int(time.time())
@@ -139,7 +140,7 @@ def merge_player_stats(uuid, stats):
         for stat_key in m_stats[key]:
                 stats[key][stat_key] = m_stats[key][stat_key]
 
-
+perm = Permissions()
 for uuid, player in players.items():
     # cache name
     name = player['name']
@@ -155,6 +156,7 @@ for uuid, player in players.items():
     player['last'] = last
 
     inactive = ((now - last) > inactive_time)
+    visitor = perm.is_visitor(uuid)
 
     # update skin
     if args.update_inactive or (not inactive):
@@ -221,11 +223,11 @@ for uuid, player in players.items():
             value = mcstat.read(stats)
             playerStats[mcstat.name] = {'value':value}
 
-            if not inactive:
+            if not inactive and not visitor:
                 mcstat.enter(uuid, value)
 
     # init crown score
-    if not inactive:
+    if not inactive and not visitor:
         crown = mcstats.CrownScore()
         player['crown'] = crown
         hof.enter(uuid, crown)
