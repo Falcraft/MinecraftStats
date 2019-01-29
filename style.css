@@ -117,8 +117,8 @@ a:hover { color: #ACF; }
     background-image: url('img/bg/stonebrick.png');
 }
 
-.minecraft-face {
-}
+/*.minecraft-face {
+}*/
 
 #header {
     height: 64px;
@@ -128,4 +128,32 @@ a:hover { color: #ACF; }
     background-image: url('img/bg/bedrock.png');
     background-position: top left;
     background-repeat: repeat;
+}
+
+li form button.btn-dark {
+        margin-bottom: 0px !important;
+        padding-bottom: 0px;
+        font-size: 1.5em;
+}
+
+input.form-control {
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+}
+
+.btn {
+    border-bottom-left-radius: 0px;
+    border-top-left-radius: 0px;
+}
+
+li form button.btn-dark span{
+    position: relative;
+    bottom: 15px;
+    height: 100%; 
+    border-bottom-left-radius: 0px !important;
+    border-top-left-radius: 0px !important;
+}
+
+form {
+    height: 30px;
 }

@@ -12,6 +12,7 @@ var mcstats = {
     viewDesc: $('#view-desc'),
     viewIcon: $('#view-icon'),
     viewContent: $('#view-content'),
+    playerSearch : $("#player-search"),
 
     info: {},
     awards: {},
@@ -64,6 +65,18 @@ mcstats.showView = function(title, subtitle, desc, iconUrl) {
 // Collapse navbar when an item is clicked
 $('.nav-link').on('click', function() {
     $('.collapse').collapse('hide');
+});
+
+$('#player-form').on('submit', function() {
+    var id = mcstats.playerSearch.val();
+    for(var k in mcstats.players) {
+        var name = mcstats.players[k].name;
+        if(name.toLowerCase() === id.toLowerCase()){
+            return location.hash = "player:" + k;
+        }
+    }
+    location.hash = "player:null";
+    return false;
 });
 
 // Register navigation event handler

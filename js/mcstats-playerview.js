@@ -48,11 +48,14 @@ mcstats.showPlayer = function(uuid) {
     }, false, function(){
         var player = mcstats.players[uuid];
         mcstats.viewContent.html(``);
-
-        mcstats.showView(
-            mcstats.playerWidget(uuid, 'textw texth align-baseline mr-2', false),
-            'Joueur non trouvé<br/> Ce Joueur ne s\'est probablement pas connecté depuis la mise à jour',
-            'Dernière connexion: ' + mcstats.lastOnlineWidget(player.last),
-            false);
+        if(!player){
+            mcstats.showView(`Joueur introuvable`, 'Joueur introuvable');
+        } else {
+            mcstats.showView(
+                mcstats.playerWidget(uuid, 'textw texth align-baseline mr-2', false),
+                'Joueur non trouvé<br/> Ce Joueur ne s\'est probablement pas connecté depuis la mise à jour',
+                'Dernière connexion: ' + mcstats.lastOnlineWidget(player.last),
+                false);
+        }
     });
 };

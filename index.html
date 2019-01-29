@@ -27,14 +27,21 @@
                         <a class="nav-link" href="#players">Joueurs</a>
                     </li>
                     <li>
-                        <a class="nav-link" href="/" >falcraft.eu</a>
+                        <form class="form-inline" id="player-form">
+                            <input id="player-search" type="text" class="form-control bg-dark text-white" placeholder="Chercher joueur..." />
+                            <button type="submit" class="form-control btn-dark btn mb-2">
+                                <span>🔍</span>
+                            </button>
+                        </form>
                     </li>
                 </ul>
             </div>
         </nav>
         <div id="header" class="clearfix text-center">
             <div id="info" class="float-right ml-auto mr-2 mt-4 p-2 round-box small text-right" style="display:none;">
-                <img id="server-icon" class="mr-1 img-textsize-3 align-bottom" title="" src="data/server-icon.png"/>
+                <a href="/">
+                    <img id="server-icon" class="mr-1 img-textsize-3 align-bottom" title="" src="data/server-icon.png"/>
+                </a>
                 <span id="server-name" class="d-none d-sm-inline text-shadow">(nom du server)</span>
                 <div class="small text-muted">
                     Derinère mise à jour: <span id="update-time" class="text-info">(dernière mise à jour)</span>
