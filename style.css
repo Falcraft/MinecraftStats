@@ -157,3 +157,49 @@ li form button.btn-dark span{
 form {
     height: 30px;
 }
+
+#autocomplete {
+    list-style-type: none;
+    margin : 0px;
+    padding: 0px;
+    position: absolute;
+    left: 0px;
+    z-index: 999;
+    width: 214px;
+    top: 34px;
+    left: 237px;
+}
+
+#autocomplete li {
+    border: 1px solid gray;
+    width: 100%;
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#autocomplete li a{
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    flex-direction: row;
+    width: 100%;
+    padding: 5px;
+    height: 100%;
+    text-decoration: none;
+    background-color: #333;
+    transition: all ease-in-out 100ms;
+}
+
+#autocomplete li a canvas {
+    width: 16px;
+    height: 16px;
+    margin-right: 5px;
+}
+
+
+#autocomplete li a.selected {
+    background-color: #222222;
+}

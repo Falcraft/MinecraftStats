@@ -149,6 +149,23 @@ function drawFace(img) {
     ctx.drawImage(img, 40, 8, 8, 8, 0, 0, canvas.width, canvas.height);
 }
 
+function hideAutoComplete(){
+    mcstats.autocomplete.hide();
+    mcstats.playerSearch.val("");
+}
+
+mcstats.selectWidget = function(uuid, name) {
+    var skin = 'https://textures.minecraft.net/texture/' + mcstats.players[uuid]['skin'];
+    return `<li>
+    <a href="#player:${uuid}" onclick="hideAutoComplete()" >
+        <canvas width="8" height="8" class="minecraft-face d-inline-block img-pixelated">
+                <img class="d-none" src="${skin}" onload="drawFace(this);"/>
+        </canvas>
+        ${name}
+    </a>
+</li>`;
+}
+
 mcstats.faceWidget = function(skinUrl, css = '') {
     return `
         <canvas width="8" height="8" class="minecraft-face d-inline-block img-pixelated ${css}">

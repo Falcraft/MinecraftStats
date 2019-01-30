@@ -26,6 +26,23 @@ loader.addRequest('data/db.json.gz', function(db) {
         mcstats.awardKeysByTitle.push(key);
     }
 
+    // Set the player name for autocomplete
+    var pseudos  = [];
+    for(var key in mcstats.players){
+        var name = mcstats.players[key].name;
+        pseudos.push({name, key});
+    }
+    pseudos.sort((a,b) => a.name.localeCompare(b.name));
+    pseudos.forEach((x,i) => {
+        mcstats.autocomplete.append(mcstats.selectWidget(x.key, x.name))
+    })
+    mcstats.autocomplete.hide();
+    $("#autocomplete li a").hover(function(){
+        $(".selected").removeClass("selected");
+        $(this).addClass("selected");
+    });
+
+
     mcstats.awardKeysByTitle.sort(function(a,b) {
         return mcstats.awards[a].title.localeCompare(
             mcstats.awards[b].title);
