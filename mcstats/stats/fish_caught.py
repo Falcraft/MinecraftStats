@@ -6,6 +6,7 @@ mcstats.registry.append(
         {
             'title': 'Pêcheur',
             'desc': 'Poissons pêchés',
+            'unit': 'int'
         },
         mcstats.StatReader(['minecraft:custom','minecraft:fish_caught'])
     ))
