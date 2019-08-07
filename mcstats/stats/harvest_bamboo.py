@@ -10,6 +10,5 @@ mcstats.registry.append(
         },
         mcstats.StatDiffReader(
             mcstats.StatReader(['minecraft:picked_up','minecraft:bamboo']),
-            mcstats.StatReader(['minecraft:used','minecraft:bamboo'])
-        )
+        1901 # bamboo added in 18w43a
     ))

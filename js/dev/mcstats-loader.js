@@ -1,23 +1,31 @@
 // Load a JSON file from an URL
-loadJson = function(url, successFunc, compressed = false, failedFunc) {
+loadJson = function(url, successFunc, compressed = false, allowCache = false) {
+    // load zlib-compressed JSON as byte sequence, then decompress
+    var req = new XMLHttpRequest();
+    req.open('GET', url, true);
+
+    if(!allowCache) {
+        req.setRequestHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+    }
+
     if(compressed) {
-        // load zlib-compressed JSON as byte sequence, then decompress
-        var req = new XMLHttpRequest();
-        req.open('GET', url, true);
         req.responseType = 'arraybuffer';
-        req.onload = function(e) {
+    }
+
+    req.onload = function(e) {
+        var data;
+        if(compressed) {
             // decompress JSON
             var compressedData = new Uint8Array(req.response);
             data = JSON.parse(pako.inflate(compressedData, {to: 'string'}));
-            // call success handler
-            successFunc(data);
-        };
-        req.send();
-    } else {
-        if(!failedFunc) failedFunc = function(){};
-        // simple AJAX request
-        $.getJSON(url, successFunc).fail(failedFunc);
-    }
+        } else {
+            data = JSON.parse(req.response);
+        }
+
+        // call success handler
+        successFunc(data);
+    };
+    req.send();
 };
 
 class Loader {

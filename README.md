@@ -12,16 +12,9 @@ A live demo of _MinecraftStats_ in action is available here: [DVG Snapshot Stats
 This section describes how to set up _MinecraftStats_ to work on your server.
 
 ### Compatibility
-Since version 2.0, ___MinecraftStats_ is compatible only to Minecraft 1.13 or later__ (more precisely: snapshot [17w47a][5] or later). This is because starting with snapshot 17w47a, Minecraft stores statistics very differently from before. In the process of updating _MinecraftStats_ for 1.13, the complete infrastructure has been rewritten and is in no way compatible to older servers.
+___MinecraftStats_ is compatible only to Minecraft 1.13 or later__ (more precisely: snapshot [17w47a][5] or later).
 
-If your server runs Minecraft 1.12.2 or prior, please use [_MinecraftStats 1.0_][3] and do not follow this guide any further, but use the old guide.
-
-I am trying to keep the statistics up to date with Minecraft snapshots. Since Mojang often decide to rename entity IDs, this may mean that compatibility to a prior release version of Minecraft breaks. If you notice such a case, please don't hesitate to [open an issue][4] about that!
-
-#### Migrating
-If you used _MinecraftStats_ 1.0 before, the only way to migrate is delete it and use this new version instead.
-
-Any customizations (awards or other extensions) won't be compatible and need to be ported manually, because _MinecraftStats_ 2.0 is a complete rewrite, much like the way Mojang apparently rewrote their statistics completely (more structured, but quite some stats have vanished).
+I am trying to keep the statistics up to date with Minecraft snapshots. Mojang sometimes decide to rename entity or statistic IDs, which may break stats. I am trying my best to update accordingly, but please don't hesitate to [open an issue][4] in case you notice something is wrong!
 
 ### Requirements
 _Python 3.4_ or later is required to feed _MinecraftStats_ with your server's data.
@@ -38,12 +31,12 @@ Simply change into the installation directory and pass the path to your Minecraf
 ```python3 update.py -s /path/to/server```
 
 You may encounter the following messages during the update:
-* `updating skin for <player> ...` - the updater needs to download the player's skin URL every so often using Mojang's web API ,so that the browser won't have to do it later and slow the web application down. __If this fails__, make sure that Python is able to open `https` connections to `sessionserver.mojang.com`.
-* `unsupported data version 0 for <player>` - this means that `<player>` has not logged into your server for a while and his data format is still from Minecraft 1.12.2 or earlier.
+* `updating profile for <player> ...` - the updater needs to download the player's skin URL every so often using Mojang's web API ,so that the browser won't have to do it later and slow the web application down. __If this fails__, make sure that Python is able to open `https` connections to `sessionserver.mojang.com`.
+* `unsupported data version 0 for <player>` - this means that `<player>` has not logged into your server for a long time and his data format is still from Minecraft 1.12.2 or earlier.
 
 In case you encounter any error messages and can't find an explanation, don't hesistate to [open an issue][4].
 
-After the update, you will have a `data` directory that contains everything the web application needs. Fore more information about what it contains exactly, see below.
+After the update, you will have a `data` directory that contains everything the web application needs.
 
 #### Automatic updates
 _MinecraftStats_ does not include any means for automatic updates - you need to take care of this yourself. The most common way to do it on Linux servers is by creating a cronjob that starts the update script regularly, e.g., every 10 minutes.
@@ -60,23 +53,25 @@ The `update.py` script accepts the following command-line options (and some more
 * `-s <server>` - the path to your Minecraft server. This is the only __required__ option.
 * `-w <world>` - if your server's main world (the one that contains the `stats` directory) is not named "world", pass its alternate name here.
 * `-d <path>` - where to store the database ("data" per default). Note that the web application will only work if the database is in a directory called `data` next to `index.html`. You should not need this option unless you don't run the updater from within the web directory.
-* `--server-name <name>` - specify the server's name displayed in the web app's heading. By default, the updater will read your `server.properties` file and use the `motd` setting, i.e., the same name that players see in the game.
+* `--server-name <name>` - specify the server's name displayed in the web app's heading. Minecraft color codes are supported! By default, the updater will read your `server.properties` file and use the `motd` setting, i.e., the same name that players see in the game's server browser.
 * `--inactive-days <days>` - if a player does not join the server for more than `<days>` days (default: 7), then he is no longer eligible for any awards.
 * `--min-playtime <minutes>` - only players who have played at least `<minutes>` minues (default: 0) on the server are eligible for awards.
 
 #### Database structure
-The `data` directory will contain the following:
-* `db.json.gz` - This is the database index used by the web application and for future updates. It is a simple JSON file compressed using `gzip` to reduce traffic by the web application. If you also need the uncompressed file for any reason, pass the `--store-uncompressed` option to the updater.
+The `data` directory will contain the following after running an update:
+* `summary.json.gz` - This is a summary for the web application, containing information about the server and everything needed to display the award listing.
 * `server-icon.png` - if your server has an icon, this will be a copy of it. Otherwise, a default icon will be used.
-* `rankings` - this directory contains one JSON file for every award. These are dynamically loaded by the web application as needed.
-* `playerdata` - this directory contains one JSON file for every player. These are dynamically loaded by the web application as needed.
+* `playercache` - cache of player names and skin IDs, grouped by player UUIDs.
+* `playerdata` - contains one JSON file for every player, containing information displayed in the player view.
+* `playerlist` - contains an index for player information used by the player list.
+* `rankings` - contains one JSON file for every award containing player rankings.
 
 # Customizing Awards
 I assume here that you have some very basic knowledge of Python, however, you may also get away without any.
 
 `update.py` imports all modules from the `mcstats/stats` directory. Here you will find many `.py` files that define the awards in a pretty straightforward way.
 
-The next time `update.py` is executed, changes here will be in effect.
+Any changes will be in effect the next time `update.py` is executed.
 
 ## Adding new awards
 For adding a new award, follow these steps:
@@ -101,8 +96,16 @@ There are various readers, the usage of which is best explained by having a clos
 ## Removing awards
 In order to remove an award, find the corresponding module and delete or modify it to suit your needs.
 
+## License and Attribution
+
+_MinecraftStats_ is released under the [Creative Commons BY-SA 4.0][6] license. This means you can pretty much use and modify it freely, with the only requirements being attribution and not putting it under restrictive (e.g., commercial) licenses if modified.
+
+Concerning the _attribution_ part, the only requirement is that you provide a visible link to [this original repository][7] in your installment. The easiest way to do this is by not removing it from the `index.html` footer, where you will also find a reminder about this.
+
 [1]:http://minecraft.gamepedia.com/Statistics
 [2]:http://mine3.dvgaming.com/
 [3]:https://github.com/pdinklag/MinecraftStats/releases/tag/1.0
 [4]:https://github.com/pdinklag/MinecraftStats/issues
 [5]:https://minecraft.gamepedia.com/17w47a
+[6]:https://creativecommons.org/licenses/by-sa/4.0/
+[7]:https://github.com/pdinklag/MinecraftStats

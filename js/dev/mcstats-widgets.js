@@ -141,10 +141,9 @@ mcstats.awardWidget = function(id) {
 
 // Get a player face widget
 function drawFace(img) {
-    var canvas = $(img).parent('canvas')[0];
+    var canvas = img.parentNode;
     var ctx = canvas.getContext('2d');
     ctx.imageSmoothingEnabled = false;
-    ctx.mozImageSmoothingEnabled = false;
     ctx.drawImage(img, 8, 8, 8, 8, 0, 0, canvas.width, canvas.height);
     ctx.drawImage(img, 40, 8, 8, 8, 0, 0, canvas.width, canvas.height);
 }
@@ -173,28 +172,83 @@ mcstats.faceWidget = function(skinUrl, css = '') {
         </canvas>`;
 }
 
-// Create a player widget
+// Player widget
+mcstats.makePlayerWidget = function(uuid, skinCss, asLink) {
+    // get player
+    p = mcstats.players[uuid];
+
+    // get player's skin
+    if(p['skin']) {
+        // compile skin URL
+        skin = 'https://textures.minecraft.net/texture/' + p['skin'];
+    } else {
+        // default skin - find out whether it's Steve or Alex
+        var even = parseInt(uuid[ 7], 16) ^
+                   parseInt(uuid[15], 16) ^
+                   parseInt(uuid[23], 16) ^
+                   parseInt(uuid[31], 16);
+
+        skin = 'img/skins/' + (even ? 'alex' : 'steve') + '.png';
+    }
+
+    return mcstats.faceWidget(skin, skinCss) +
+        (asLink ? `<a href="#player:${uuid}">${p.name}</a>` : p.name);
+}
+
 mcstats.playerWidget = function(uuid, skinCss = 'textw-1_5 texth-1_5 align-baseline mr-1', asLink = true) {
     if(uuid) {
-        var p = mcstats.players[uuid];
-
-        // get player's skin
-        if(p['skin']) {
-            // compile skin URL
-            skin = 'https://textures.minecraft.net/texture/' + p['skin'];
+        if(uuid in mcstats.players) {
+            return mcstats.makePlayerWidget(uuid, skinCss, asLink);
         } else {
-            // default skin - find out whether it's Steve or Alex
-            var even = parseInt(uuid[ 7], 16) ^
-                       parseInt(uuid[15], 16) ^
-                       parseInt(uuid[23], 16) ^
-                       parseInt(uuid[31], 16);
-
-            skin = 'img/skins/' + (even ? 'alex' : 'steve') + '.png';
+            mcstats.cachePlayer(uuid, function(){
+                document.getElementById(uuid).innerHTML =
+                    mcstats.makePlayerWidget(uuid, skinCss, asLink);
+            });
+            return `<span id=${uuid}>${uuid}</span>`;
         }
-
-        return mcstats.faceWidget(skin, skinCss) +
-            (asLink ? `<a href="#player:${uuid}">${p.name}</a>` : p.name);
     } else {
         return `<span class="text-muted">(Personne)</span>`;
     }
+};
+
+// Remove color codes from a color coded string
+mcstats.removeColorCodes = function(str) {
+    nofmt = ''
+    for(i = 0; i < str.length; i++) {
+        if(str.charCodeAt(i) == 167) {
+            ++i; // skip color code
+        } else {
+            nofmt += str[i];
+        }
+    }
+    return nofmt;
+}
+
+// Create HTML for a color coded string (e.g. server MOTD)
+mcstats.formatColorCode = function(str) {
+    html = '';
+
+    color = false;
+    level = 0;
+
+    for(i = 0; i < str.length; i++) {
+        if(str.charCodeAt(i) == 167) {
+            code = str[i+1];
+            if(code == 'r') {
+                // reset
+                html += `</span>`.repeat(level);
+                level = 0;
+            } else {
+                // style
+                html += `<span class="mc-text-${code}">`;
+                ++level;
+            }
+            ++i;
+        } else {
+            html += str[i];
+        }
+    }
+
+    html += `</span>`.repeat(level);
+    return html;
 };

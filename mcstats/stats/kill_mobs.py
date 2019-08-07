@@ -11,7 +11,7 @@ mcstats.registry.append(
         mcstats.StatReader(['minecraft:custom','minecraft:mob_kills'])
     ))
 
-def create_kill_stat(mobId, title, mobText):
+def create_kill_stat(mobId, title, mobText, minVersion = 0):
     mcstats.registry.append(
         mcstats.MinecraftStat(
             'kill_' + mobId,
@@ -20,18 +20,10 @@ def create_kill_stat(mobId, title, mobText):
                 'desc': mobText + ' tués',
                 'unit': 'int',
             },
-            mcstats.StatReader(['minecraft:killed','minecraft:' + mobId])
+            mcstats.StatReader(['minecraft:killed','minecraft:' + mobId]),
+            minVersion
         ))
 
-# According to MC-33710, the following mobs are not tracked and therefore
-# there are no stats for them:
-# - Ender Dragon
-# - Illusioners
-# - Iron Golems
-# - Snow Golems
-# - Vexes
-
-# -- SCORES
 # Hostiles
 create_kill_stat('blaze','Pompier du nether','Blazes')
 create_kill_stat('creeper','Démineur','Creepers')
@@ -45,6 +37,7 @@ create_kill_stat('slime','Rôdeur des marais','Slimes')
 create_kill_stat('vex','Casseur de vex','Vexs')
 create_kill_stat('witch','Chasseur de sorcières','Sorcières')
 create_kill_stat('wither_skeleton','Je veux ma balise','Wither squelettes')
+create_kill_stat('ravager','Ravaging!','Ravagers',1930) # changed in 19w05a
 
 # Neutrals
 create_kill_stat('dolphin','Braconier','Dauphins')
@@ -73,6 +66,38 @@ create_kill_stat('sheep','Grand méchant loup','Moutons')
 create_kill_stat('squid','Nettoyeur de piscine','Calamars')
 create_kill_stat('villager','Brute !','Villageois')
 create_kill_stat('wolf','Méchant toutou!','Loups et Chiens')
+create_kill_stat('wandering_trader','Trade Sanctions','Wandering Traders',1930) # added in 19w05a
+create_kill_stat('fox','What Does The Fox Say?','Foxes',1932) # added in 19w07a
+
+# Cats (including ozelots)
+mcstats.registry.append(
+    mcstats.MinecraftStat(
+        'kill_ocelot',
+        {
+            'title': 'Kitty Killer',
+            'desc': 'Ocelots and Cats killed',
+            'unit': 'int',
+        },
+        mcstats.StatSumReader([
+            mcstats.StatReader(['minecraft:killed','minecraft:cat']),
+            mcstats.StatReader(['minecraft:killed','minecraft:ocelot']),
+        ])
+    ))
+
+# Llamas (including trader llamas)
+mcstats.registry.append(
+    mcstats.MinecraftStat(
+        'kill_llama',
+        {
+            'title': 'Caravan Bandit',
+            'desc': 'LLamas killed',
+            'unit': 'int',
+        },
+        mcstats.StatSumReader([
+            mcstats.StatReader(['minecraft:killed','minecraft:llama']),
+            mcstats.StatReader(['minecraft:killed','minecraft:trader_llama']),
+        ])
+    ))
 
 # Zombies (including Husks and Zombie Villagers)
 mcstats.registry.append(
@@ -169,4 +194,5 @@ mcstats.registry.append(
             mcstats.StatReader(['minecraft:killed','minecraft:pufferfish']),
             mcstats.StatReader(['minecraft:killed','minecraft:tropical_fish']),
         ]),
+        1471 # fish mobs added in 18w08b
     ))
