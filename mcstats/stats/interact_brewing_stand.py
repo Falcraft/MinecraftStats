@@ -2,11 +2,14 @@ from mcstats import mcstats
 
 mcstats.registry.append(
     mcstats.MinecraftStat(
-        'interact_brewing_stand',
+        "interact_brewing_stand",
         {
-            'title': 'Brewer',
-            'desc': 'Brewing Stand interactions',
-            'unit': 'int',
+            "title": "Brasseur",
+            "desc": "Intéractions avec un stand d'alchimie",
+            "unit": "int",
         },
-        mcstats.StatReader(['minecraft:custom','minecraft:interact_with_brewingstand']),
-    ))
+        mcstats.StatReader(
+            ["minecraft:custom", "minecraft:interact_with_brewingstand"]
+        ),
+    )
+)
