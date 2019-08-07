@@ -37,7 +37,7 @@ create_kill_stat('slime','Rôdeur des marais','Slimes')
 create_kill_stat('vex','Casseur de vex','Vexs')
 create_kill_stat('witch','Chasseur de sorcières','Sorcières')
 create_kill_stat('wither_skeleton','Je veux ma balise','Wither squelettes')
-create_kill_stat('ravager','Ravaging!','Ravagers',1930) # changed in 19w05a
+create_kill_stat('ravager','Un ravage','Ravagers',1930) # changed in 19w05a
 
 # Neutrals
 create_kill_stat('dolphin','Braconier','Dauphins')
@@ -50,7 +50,6 @@ create_kill_stat('zombie_pigman','Gang du nether','Cochons zombie')
 
 # -- KILLS
 # Passives
-create_kill_stat('llama','Pilleur de caravanes','Lamas')
 create_kill_stat('bat','Anti-batman','Chauves-souris')
 create_kill_stat('chicken','KFC','Poulets')
 create_kill_stat('cow','La vache !','Vaches')
@@ -69,28 +68,13 @@ create_kill_stat('wolf','Méchant toutou!','Loups et Chiens')
 create_kill_stat('wandering_trader','Trade Sanctions','Wandering Traders',1930) # added in 19w05a
 create_kill_stat('fox','What Does The Fox Say?','Foxes',1932) # added in 19w07a
 
-# Cats (including ozelots)
-mcstats.registry.append(
-    mcstats.MinecraftStat(
-        'kill_ocelot',
-        {
-            'title': 'Kitty Killer',
-            'desc': 'Ocelots and Cats killed',
-            'unit': 'int',
-        },
-        mcstats.StatSumReader([
-            mcstats.StatReader(['minecraft:killed','minecraft:cat']),
-            mcstats.StatReader(['minecraft:killed','minecraft:ocelot']),
-        ])
-    ))
-
 # Llamas (including trader llamas)
 mcstats.registry.append(
     mcstats.MinecraftStat(
         'kill_llama',
         {
-            'title': 'Caravan Bandit',
-            'desc': 'LLamas killed',
+            'title': 'Pilleur de caravanes',
+            'desc': 'LLamas tués',
             'unit': 'int',
         },
         mcstats.StatSumReader([
